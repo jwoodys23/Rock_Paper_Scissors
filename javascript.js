@@ -41,7 +41,7 @@ function playRound(playerSelection, computerSelection) {
 }
 function gameOver (playerScore, computerScore) {
     // Determines if player or computer reaches winning score. 
-    if (playerScore == 2 || computerScore ==2) {
+    if (playerScore == 5 || computerScore == 5) {
         console.log('Game Over, ' + winner + " wins!")
         return true;
     } 
