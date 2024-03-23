@@ -12,7 +12,9 @@ function getComputerChoice() {
 
 function getPlayerChoice () {
     // Promps player for selection and converts to uppercase to account for different capitalization from input
-    return prompt("Rock, Paper or Scissors?").toUpperCase();
+    console.log(displayResult.textContent)
+    return displayResult.textContent;
+    //return prompt("Rock, Paper or Scissors?").toUpperCase();
 }
 
 let playerSelection = '';
@@ -65,18 +67,42 @@ function roundWinnerMessage(winner) {
     }
 }
 
-function playGame(playerSelection, computerSelection){
+function playGame(){
     playerSelection = getPlayerChoice();
     computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection);
 
 }
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+
+const result = document.querySelector(".results");
+const displayResult = document.createElement("div");
+result.appendChild(displayResult);
+
+rockBtn.addEventListener("click", () => {
+    displayResult.textContent = "King button pressed";
+    console.log("King button pressed");
+});
+
+paperBtn.addEventListener("click", () => {
+    displayResult.textContent = "Paper button pressed";
+    console.log("Paper button pressed");
+});
+
+scissorsBtn.addEventListener("click", () => {
+    displayResult.textContent = "Scissors button pressed";
+    console.log("Scissors button pressed");
+});
+ /*
 while (gameOver(playerScore, computerScore) === false) {
     // Runs the game as long as neither the player or computer reaches the winning score
-    playGame();
+    //playGame();
 }
 
-
+*/
 
 
 
