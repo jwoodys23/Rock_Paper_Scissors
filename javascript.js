@@ -29,14 +29,14 @@ function playRound(playerSelection, computerSelection) {
           (playerSelection == 'PAPER' && computerSelection == 'ROCK') ||
           (playerSelection == 'SCISSORS' && computerSelection == 'PAPER')
     ) {
-        playerScore++
+        playerScore++;
         winner = 'player';
     } if ((playerSelection == 'ROCK' && computerSelection == 'PAPER') ||
           (playerSelection == 'PAPER' && computerSelection == 'SCISSORS') ||
           (playerSelection == 'SCISSORS' && computerSelection == 'ROCK')
     ) {
         computerScore++
-        winner = 'computer'
+        winner = 'computer';
     }
 }
 function gameOver (playerScore, computerScore) {
