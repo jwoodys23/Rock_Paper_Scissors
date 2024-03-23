@@ -34,9 +34,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 function gameOver (playerScore, computerScore) {
-    // Determines if player or computer reaches winning score. 
-    if (playerScore == 2 || computerScore == 2) {
-        displayResult.textContent = 'Game Over, ' + winner + " wins!";
+    if (playerScore == 5 || computerScore == 5) {
         return true;
     } 
     else {
@@ -49,19 +47,22 @@ function resetGame() {
     computerScore = 0;
 }
 function roundWinnerMessage(winner) {
-    // Returns a message at the end of each round for the result of the round and updated score.
-    switch(winner){
-        case 'tie':
-            displayResult.textContent = 'Its a tie! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
-            break;
-        case 'computer':
-            displayResult.textContent = 'Computer Wins! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
-            break;
-        case 'player':
-            displayResult.textContent = 'Player Wins! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
-            break;
+    if(!gameOver(playerScore, computerScore)){
+        switch(winner){
+            case 'tie':
+                displayResult.textContent = 'Its a tie! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
+                break;
+            case 'computer':
+                displayResult.textContent = 'Computer Wins! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
+                break;
+            case 'player':
+                displayResult.textContent = 'Player Wins! The score is Player: ' + playerScore + ' To Computer: ' +computerScore;
+                break;
+        }} else {
+            displayResult.textContent = displayResult.textContent = 'Game Over, ' + winner + " wins!";
+        }
     }
-}
+
 
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
@@ -78,23 +79,25 @@ rockBtn.addEventListener("click", () => {
     if (!gameOver(playerScore, computerScore)){
         playRound(playerSelection, computerSelection);
         roundWinnerMessage(winner);
-    } else {
-        console.log("game over")
-    }    
+    }  
 });
 
 paperBtn.addEventListener("click", () => {
     playerSelection = "PAPER";
     computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    roundWinnerMessage(winner);
+    if (!gameOver(playerScore, computerScore)){
+        playRound(playerSelection, computerSelection);
+        roundWinnerMessage(winner);
+    }  
 });
 
 scissorsBtn.addEventListener("click", () => {
     playerSelection = "SCISSORS";
     computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    roundWinnerMessage(winner);
+    if (!gameOver(playerScore, computerScore)){
+        playRound(playerSelection, computerSelection);
+        roundWinnerMessage(winner);
+    }  
 });
 
 resetBtn.addEventListener("click", () => {
