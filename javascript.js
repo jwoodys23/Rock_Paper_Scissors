@@ -1,5 +1,4 @@
 function getComputerChoice() {
-    // Randomly returns either Rock, Paper or Scissors as a string
     const randomNum = Math.random();
     if (randomNum < .34) {
         return "ROCK";
@@ -10,13 +9,6 @@ function getComputerChoice() {
         }
 }
 
-function getPlayerChoice () {
-    // Promps player for selection and converts to uppercase to account for different capitalization from input
-    console.log(displayResult.textContent)
-    return displayResult.textContent;
-    //return prompt("Rock, Paper or Scissors?").toUpperCase();
-}
-
 let playerSelection = '';
 let computerSelection = '';
 let playerScore = 0;
@@ -25,7 +17,6 @@ let winner = '';
 
 function playRound(playerSelection, computerSelection) {
 
-    //Compares players selection to computers selection and returns the winner of the round
     if (playerSelection == computerSelection) {
         winner = 'tie';
     } if ((playerSelection == 'ROCK' && computerSelection == 'SCISSORS' ) || 
@@ -44,12 +35,11 @@ function playRound(playerSelection, computerSelection) {
 }
 function gameOver (playerScore, computerScore) {
     // Determines if player or computer reaches winning score. 
-    if (playerScore == 5 || computerScore == 5) {
-        console.log('Game Over, ' + winner + " wins!")
+    if (playerScore == 2 || computerScore == 2) {
+        displayResult.textContent = 'Game Over, ' + winner + " wins!";
         return true;
     } 
     else {
-        roundWinnerMessage(winner);
         return false;
     }
 }
@@ -76,6 +66,7 @@ function roundWinnerMessage(winner) {
 const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorsBtn = document.querySelector("#scissors");
+const resetBtn = document.querySelector("#reset");
 
 const result = document.querySelector(".results");
 const displayResult = document.createElement("div");
@@ -84,8 +75,12 @@ result.appendChild(displayResult);
 rockBtn.addEventListener("click", () => {
     playerSelection = "ROCK";
     computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
-    roundWinnerMessage(winner);
+    if (!gameOver(playerScore, computerScore)){
+        playRound(playerSelection, computerSelection);
+        roundWinnerMessage(winner);
+    } else {
+        console.log("game over")
+    }    
 });
 
 paperBtn.addEventListener("click", () => {
@@ -101,13 +96,13 @@ scissorsBtn.addEventListener("click", () => {
     playRound(playerSelection, computerSelection);
     roundWinnerMessage(winner);
 });
- /*
-while (gameOver(playerScore, computerScore) === false) {
-    // Runs the game as long as neither the player or computer reaches the winning score
-    //playGame();
-}
 
-*/
+resetBtn.addEventListener("click", () => {
+    playerScore = 0;
+    computerScore = 0;
+    displayResult.textContent = "Score Reset!"
+});
+
 
 
 
